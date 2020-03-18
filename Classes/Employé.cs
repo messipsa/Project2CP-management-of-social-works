@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,12 +9,12 @@ public class Employé
 {
     private string nom;
     private string prenom;
-    private long num_sec_social;
+    private string num_sec_social;
     private DateTime date_naissance;
     private DateTime date_prem;
     private string grade;
-    private string cpt_ccp;
-    private int clé_ccp;
+    private string ccp;
+    private string cle_ccp;
     private double salaire;
     private Etat etat;
     private string num_tel;
@@ -23,12 +23,18 @@ public class Employé
     private List<Prets> pret = new List<Prets>();
 
 
-    public Employé(string nom,string prenom , string ccp ,int cle_ccp ,Boolean demande)
+    public Employé(string nom,string prenom , string num_sec_social, DateTime date_naissance, DateTime date_prem, string grade, string ccp ,string cle_ccp , double salaire, Boolean demande)
     {
         this.nom = nom;
         this.prenom = prenom;
-        this.clé_ccp = cle_ccp;
-        this.cpt_ccp = ccp;
+        this.num_sec_social = num_sec_social;
+        this.date_naissance = date_naissance;
+        this.date_prem = date_prem;
+        this.grade = grade;
+        this.ccp = ccp;
+        this.cle_ccp = cle_ccp;
+        this.salaire = salaire;
+        this.ccp = ccp;
         this.demande = demande;
     }
         
@@ -55,7 +61,7 @@ public class Employé
             this.prenom = value;
         }
     }
-    public long sec_soc
+    public string sec_soc
     {
         get
         {
@@ -70,23 +76,23 @@ public class Employé
     {
         get
         {
-            return this.cpt_ccp;
+            return this.ccp;
         }
         set
         {
-            this.cpt_ccp = value;
+            this.ccp = value;
         }
 
     }
-    public int cle_ccp
+    public string Cle_ccp
     {
         get
         {
-            return this.clé_ccp;
+            return this.cle_ccp;
         }
         set
         {
-            this.clé_ccp = value;
+            this.cle_ccp = value;
         }
     }
     public double Salaire
