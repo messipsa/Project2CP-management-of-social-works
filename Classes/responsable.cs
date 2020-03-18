@@ -7,10 +7,16 @@ using System.Data.SqlClient;
 
 public class responsable
 {
-    public static List<Employé> liste_employes = new List<Employé>();
-    public static List<Type_pret> liste_types = new List<Type_pret>();
-    public static List<Archive> liste_archives = new List<Archive>();
-    public static List<Pret_remboursable> liste_pret_remboursable = new List<Pret_remboursable>();
-    public static List<Pret_non_remboursable> liste_pret_Non_Remboursables = new List<Pret_non_remboursable>();
+    public static double tresor;
+    public static Dictionary<int, Employé> liste_employes = new Dictionary<int, Employé>();
+    public static Dictionary<int, Type_pret> liste_types = new Dictionary<int, Type_pret>();
+    public static Dictionary<int, Archive> liste_archives = new Dictionary<int, Archive>();
+    public static Dictionary<int, Pret_remboursable> liste_pret_remboursable = new Dictionary<int, Pret_remboursable>();
+    public static Dictionary<int, Pret_non_remboursable> liste_pret_Non_Remboursables = new Dictionary<int, Pret_non_remboursable>();
 
+
+    public void ajouter_pret ()
+    {
+
+    }
 }
