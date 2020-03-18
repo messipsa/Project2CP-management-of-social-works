@@ -20,7 +20,8 @@ public class Employé
     private string num_tel;
     private Boolean demande;
 
-    private List<Prets> pret = new List<Prets>();
+    private Dictionary<int, Pret_remboursable> pret_remboursable_employe = new Dictionary<int, Pret_remboursable>();
+    private Dictionary<int, Pret_non_remboursable> pret_non_remboursable_employe = new Dictionary<int, Pret_non_remboursable>();
 
 
     public Employé(string nom,string prenom , string num_sec_social, DateTime date_naissance, DateTime date_prem, string grade, string ccp ,string cle_ccp , double salaire, Boolean demande)
