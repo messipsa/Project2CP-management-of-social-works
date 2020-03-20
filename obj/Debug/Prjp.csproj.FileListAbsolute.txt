@@ -1,0 +1,6 @@
+C:\Users\dell\source\repos\Prjp\Prjp\bin\Debug\Prjp.exe.config
+C:\Users\dell\source\repos\Prjp\Prjp\bin\Debug\Prjp.exe
+C:\Users\dell\source\repos\Prjp\Prjp\bin\Debug\Prjp.pdb
+C:\Users\dell\source\repos\Prjp\Prjp\obj\Debug\Prjp.csprojAssemblyReference.cache
+C:\Users\dell\source\repos\Prjp\Prjp\obj\Debug\Prjp.exe
+C:\Users\dell\source\repos\Prjp\Prjp\obj\Debug\Prjp.pdb
