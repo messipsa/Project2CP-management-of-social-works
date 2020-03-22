@@ -8,6 +8,7 @@ namespace Prjp
 {
     public class Employé
     {
+        private int cle;
         private string nom;
         private string prenom;
         private string num_sec_social;
@@ -19,13 +20,16 @@ namespace Prjp
         private string etat;
         private string num_tel;
         private bool demande;
+        private string matricule;
 
         private Dictionary<int, Pret_remboursable> pret_remboursable_employe = new Dictionary<int, Pret_remboursable>();
         private Dictionary<int, Pret_non_remboursable> pret_non_remboursable_employe = new Dictionary<int, Pret_non_remboursable>();
 
 
-        public Employé(string nom, string prenom, string num_sec_social, DateTime date_naissance, DateTime date_prem, string grade, string ccp, string cle_ccp,string num, bool demande)
+        public Employé(int cle, string matricule, string nom, string prenom, string num_sec_social, DateTime date_naissance, string grade, DateTime date_prem, string etat, string ccp, string cle_ccp, string tel, bool demande)
         {
+            this.cle = cle;
+            this.matricule = matricule;
             this.nom = nom;
             this.prenom = prenom;
             this.num_sec_social = num_sec_social;
@@ -34,11 +38,40 @@ namespace Prjp
             this.grade = grade;
             this.ccp = ccp;
             this.cle_ccp = cle_ccp;
+            this.etat = etat;
             this.ccp = ccp;
-            this.num_tel = num;
+            this.tel = tel;
             this.demande = demande;
         }
 
+        public void affiche_attribus()
+        {
+            Console.WriteLine(this.cle + " | " + this.matricule + " | " + this.nom + " | " + this.prenom + " | " + this.num_sec_social + " | " + this.date_naissance + " | " + this.grade + " | " + this.date_prem + " | " + this.etat + " | " + this.ccp + " | " + this.cle_ccp + " | " + this.tel + " | " + this.demande);
+        }
+
+        public int Cle
+        {
+            get
+            {
+                return this.cle;
+            }
+            set
+            {
+                this.cle = value;
+            }
+        }
+
+        public string Matricule
+        {
+            get
+            {
+                return this.matricule;
+            }
+            set
+            {
+                this.matricule = value;
+            }
+        }
 
         public string Nom
         {
@@ -97,7 +130,7 @@ namespace Prjp
                 this.cle_ccp = value;
             }
         }
-       
+
         public string etats
         {
             get

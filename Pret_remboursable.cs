@@ -9,17 +9,16 @@ namespace Prjp
     public class Pret_remboursable : Prets
     {
         private DateTime date_premier_paiment;
-        private Type_pret type_pret;
-        private int en_cours;
-        private double[] etat_rembouressement = new double[12];
+        private int en_cours;              /* cet entier indique si le remboursement d'un pret se deroule normalement ou pas , ie : en_cours == 1 si  (1/10 du montant par mois)                                                                                                                       
+                                                                                                                                en_cours == 0 s   (l'employé a choisi de mettre en pause le remboursement) */
+        private double[] etat_rembouressement = new double[10];
         private int debordement;
 
-        public Pret_remboursable(Employé employe, double montant, double[] mois, int en_cours, Type_pret type_pret, DateTime date_premier_paiment, int debordement) : base(employe, montant)
+        public Pret_remboursable( Employé employé, Type_pret type, string motif, int num_pv, DateTime date_pv, double montant, DateTime date_demande, string montant_lettre, DateTime date_premier_paiment, int en_cours, double[] etat_rembouressement, int debordement) : base( employé, type, motif, num_pv, date_pv, montant, date_demande, montant_lettre)
         {
-            this.etat_rembouressement = mois;
             this.date_premier_paiment = date_premier_paiment;
             this.en_cours = en_cours;
-            this.type_pret = type_pret;
+            this.etat_rembouressement = etat_rembouressement;
             this.debordement = debordement;
         }
         public double[] Etat_Rembouressement
@@ -31,17 +30,6 @@ namespace Prjp
             set
             {
                 this.etat_rembouressement = value;
-            }
-        }
-        public Type_pret Type_prets
-        {
-            get
-            {
-                return this.type_pret;
-            }
-            set
-            {
-                this.type_pret = value;
             }
         }
 
@@ -82,7 +70,7 @@ namespace Prjp
         }
         public Boolean meme_pret( Pret_remboursable p2)
         {
-            if(this.Employé.meme_employé(p2.employé)&&(this.Somme==p2.Somme)&&(this.Date_demande==p2.Date_demande)&&(this.Date_premier_paiment==p2.Date_premier_paiment)&&(this.Type_prets==p2.Type_prets))
+            if(this.Employé.meme_employé(p2.employé)&&(this.montant==p2.montant)&&(this.Date_demande==p2.Date_demande)&&(this.Date_premier_paiment==p2.Date_premier_paiment)&&(this.type==p2.Type_Pret))
             {
                 return true;
             }
@@ -91,18 +79,6 @@ namespace Prjp
                 return false;
             }
         }
-       /* public void archiver_pret(Pret_remboursable p)
-        {
-            foreach( Pret_remboursable s in responsable.liste_pret_remboursable.Values)
-            {
-                if(s.Equals(p)
-                    {
-                   // responsable.liste_archives.Add(1,s);
-                   // responsable.liste_pret_remboursable.Remove(s.)
-                }
-
-            }
-
-        }*/
+       
     }
 }

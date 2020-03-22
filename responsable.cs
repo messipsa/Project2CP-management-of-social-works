@@ -23,14 +23,36 @@ namespace Prjp
         {
 
         }
-        public static  void afficher_liste_employ()
+        public static void affiche_liste_employes()
         {
-            foreach(Employé e in liste_employes.Values)
+            foreach (KeyValuePair<int, Employé> liste in responsable.liste_employes)
             {
-                Console.WriteLine(e.Grade);
+                Console.Write("Clé = " + liste.Key + " ||  ");
+                liste.Value.affiche_attribus();
             }
         }
-        public static void aj_emp(  Employé b)
+
+        public static void affiche_liste_archive()
+        {
+            foreach (KeyValuePair<int, Archive> liste in responsable.liste_archives)
+            {
+                Console.WriteLine("*********************************");
+                Console.WriteLine("Clé = " + liste.Key + " || ");
+                liste.Value.affiche_attribue();
+            }
+        }
+
+        public static void affiche_liste_type_pret()
+        {
+            foreach (KeyValuePair<int, Type_pret> liste in responsable.liste_types)
+            {
+                Console.WriteLine("*********************************");
+                Console.WriteLine("Clé = " + liste.Key + " || ");
+                liste.Value.affiche_attribus();
+            }
+        }
+       
+        public static void ajouter_emp(  Employé b)
         {
             
             if (!(liste_employes.ContainsValue(b)))
@@ -43,7 +65,7 @@ namespace Prjp
                 Console.WriteLine("pas d'ajout");
             }
         }
-        public static void aj_type_pret(Type_pret b)
+        public static void ajouter_type_pret(Type_pret b)
         {
             
             if (!(liste_types.ContainsValue(b)))
@@ -57,7 +79,7 @@ namespace Prjp
                 Console.WriteLine("pas d'ajout");
             }
         }
-        public static void aj_pret_remboursable(Pret_remboursable b)
+        public static void ajouter_pret_remboursable(Pret_remboursable b)
         {
            
             if (!(liste_pret_remboursable.ContainsValue(b)))
@@ -70,7 +92,7 @@ namespace Prjp
                 Console.WriteLine("pas d'ajout");
             }
         }
-        public static void aj_pret_non_remboursable(Pret_non_remboursable b)
+        public static void ajouter_pret_non_remboursable(Pret_non_remboursable b)
         {
             
             if (!(liste_pret_Non_Remboursables.ContainsValue(b)))

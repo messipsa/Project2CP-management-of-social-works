@@ -8,18 +8,50 @@ namespace Prjp
 {
     abstract public class Prets
     {
+
+        protected static int cle_globale = 0;
+        protected int cle;
         protected Employé employé;
+        protected Type_pret type;
         protected string motif;
-        protected Double somme;
+        protected int num_pv;
+        protected DateTime date_pv;
+        protected double montant;
         protected DateTime date_demande;
-        protected string somme_lettre;
+        protected string montant_lettre;
 
 
-        public Prets(Employé employe, Double montant)
+        public Prets(Employé employé, Type_pret type, string motif, int num_pv, DateTime date_pv, double montant, DateTime date_demande, string montant_lettre)
         {
-            this.employé = employe;
-            this.somme = montant;
+            this.cle = Prets.cle_globale++;
+            this.employé = employé;
+            this.type = type;
+            this.motif = motif;
+            this.num_pv = num_pv;
+            this.date_pv = date_pv;
+            this.montant = montant;
+            this.date_demande = date_demande;
+            this.montant_lettre = montant_lettre;
+        }
 
+        public void affiche_attribus()
+        {
+            Console.Write(this.cle + " | ");
+            this.employé.affiche_attribus();
+            this.type.affiche_attribus();
+            Console.WriteLine(this.motif + " | " + this.num_pv + " | " + this.date_pv + " | " + this.montant + " | " + this.date_demande + " | " + this.montant_lettre);
+        }
+
+        public int Cle
+        {
+            get
+            {
+                return this.cle;
+            }
+            set
+            {
+                this.cle = value;
+            }
         }
 
         public Employé Employé
@@ -35,16 +67,27 @@ namespace Prjp
             }
         }
 
-
-        public Double Somme
+        public int Num_pv
         {
             get
             {
-                return this.somme;
+                return this.num_pv;
             }
             set
             {
-                this.somme = value;
+                this.num_pv = value;
+            }
+        }
+
+        public Double Montant
+        {
+            get
+            {
+                return this.montant;
+            }
+            set
+            {
+                this.montant = value;
             }
         }
 
@@ -72,29 +115,51 @@ namespace Prjp
             }
         }
 
-        public string Somme_lettre
+        public string Montant_lettre
         {
             get
             {
-                return this.somme_lettre;
+                return this.montant_lettre;
             }
             set
             {
-                this.somme_lettre = value;
+                this.montant_lettre = value;
             }
         }
-       /* public override bool Equals(object obj)
+
+        public Type_pret Type_Pret
+        {
+            get
+            {
+                return this.type;
+            }
+            set
+            {
+                this.type = value;
+            }
+        }
+
+        public DateTime Date_pv
+        {
+            get
+            {
+                return this.date_pv;
+            }
+            set
+            {
+                this.date_pv = value;
+            }
+        }
+        public override bool Equals(object obj)
         {
             Prets p = obj as Prets;
-            if(p==null)
+            if (p == null)
             {
                 return false;
             }
-            return(this.)
-        }*/
+            return (this.cle == p.Cle);
+        }
+
 
     }
-
-
-
     }

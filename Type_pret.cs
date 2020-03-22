@@ -13,9 +13,17 @@ namespace Prjp
         private string description;
         private int remboursable;
 
-        public Type_pret(int type_du_pret)
+        public Type_pret(int type_du_pret, int dispo, string descri, int remboursable)
         {
             this.type_du_pret = type_du_pret;
+            this.disponibilité = dispo;
+            this.description = descri;
+            this.remboursable = remboursable;
+        }
+
+        public void affiche_attribus()
+        {
+            Console.WriteLine(this.type_du_pret + " | " + this.disponibilité + " | " + this.Description + " | " + this.remboursable);
         }
 
         public int Type_de_pret
