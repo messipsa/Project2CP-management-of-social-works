@@ -9,7 +9,7 @@ namespace Prjp
     public class Employé
     {
         private int cle;
-        private static int cle_generale=1;
+        private static int cle_unique_employés=1; // attribut pour l'unicité des clés des employés gerés par nous.
         private string nom;
         private string prenom;
         private string num_sec_social;
@@ -22,8 +22,8 @@ namespace Prjp
         private string num_tel;
         private bool demande;
         private string matricule;
-        public static  int nb_pret_rembours=1;
-        public static int nb_pret_non_rembours = 1;
+        public static  int cle_liste_prets_remboursable_employe=1; // cles pour l'unicite des cles des 2 dictionnaires 
+        public static int cle_liste_prets_Non_remboursable_employe = 1; // (pret_remboursable_employe et pret_non_remboursable_employe)
 
         private Dictionary<int, Pret_remboursable> pret_remboursable_employe = new Dictionary<int, Pret_remboursable>();
         private Dictionary<int, Pret_non_remboursable> pret_non_remboursable_employe = new Dictionary<int, Pret_non_remboursable>();
@@ -31,7 +31,7 @@ namespace Prjp
 
         public Employé( string matricule, string nom, string prenom, string num_sec_social, DateTime date_naissance, string grade, DateTime date_prem, string etat, string ccp, string cle_ccp, string tel, bool demande)
         {
-            this.cle = Employé.cle_generale;
+            this.cle = Employé.cle_unique_employés;//l'unicité de la cle d'un employé
             this.matricule = matricule;
             this.nom = nom;
             this.prenom = prenom;
@@ -45,8 +45,8 @@ namespace Prjp
             this.ccp = ccp;
             this.tel = tel;
             this.demande = demande;
-            Employé.cle_generale++;
-            responsable.ajouter_emp(this);
+            Employé.cle_unique_employés++;
+            responsable.ajouter_employe(this);// ajout automatique d'un employé à la liste des employés.
         }
 
         public void affiche_attribus()
@@ -216,31 +216,31 @@ namespace Prjp
             Employé emp = obj as Employé;
             return (this.num_sec_social == emp.sec_soc);
         }
-        public void ajouter_pret_rembours(Pret_remboursable p)
+        public void ajouter_pret_remboursable_employe(Pret_remboursable p)
         {
             if (!(pret_remboursable_employe.ContainsValue(p)))
             {
-                pret_remboursable_employe.Add(Employé.nb_pret_rembours, p);
-                Employé.nb_pret_rembours++;
+                pret_remboursable_employe.Add(Employé.cle_liste_prets_remboursable_employe, p);
+                Employé.cle_liste_prets_remboursable_employe++;
             }
             else
             {
                 Console.WriteLine("pas d'ajout");
             }
         }
-        public void ajouter_pret_non_rembours(Pret_non_remboursable p)
+        public void ajouter_pret_non_remboursable_employe(Pret_non_remboursable p)
         {
             if (!(pret_non_remboursable_employe.ContainsValue(p)))
             {
-                pret_non_remboursable_employe.Add(Employé.nb_pret_non_rembours, p);
-               Employé.nb_pret_non_rembours++;
+                pret_non_remboursable_employe.Add(Employé.cle_liste_prets_Non_remboursable_employe, p);
+               Employé.cle_liste_prets_Non_remboursable_employe++;
             }
             else
             {
                 Console.WriteLine("pas d'ajout");
             }
         }
-        public void affiche_liste_pret_remboursable()
+        public void affiche_liste_pret_remboursable_employe()
         {
             foreach (KeyValuePair<int, Pret_remboursable> liste in this.pret_remboursable_employe)
             {
@@ -249,7 +249,7 @@ namespace Prjp
                 liste.Value.affiche_attributs_complets();
             }
         }
-        public  void affiche_liste_pret_non_remboursable()
+        public  void affiche_liste_pret_non_remboursable_employe()
         {
             foreach (KeyValuePair<int, Pret_non_remboursable> liste in this.pret_non_remboursable_employe)
             {

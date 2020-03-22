@@ -29,8 +29,8 @@ namespace Prjp
             responsable.affiche_liste_employes();
             responsable.affiche_liste_pret_non_remboursable();
             responsable.affiche_liste_pret_remboursable();
-            emp2.affiche_liste_pret_remboursable();
-            emp2.affiche_liste_pret_non_remboursable();
+            emp2.affiche_liste_pret_remboursable_employe();
+            emp2.affiche_liste_pret_non_remboursable_employe();
             Console.ReadLine();
         }
 

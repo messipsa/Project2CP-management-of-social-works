@@ -10,8 +10,8 @@ namespace Prjp
     {
         public Pret_non_remboursable( Employé employé, Type_pret type, string motif, int num_pv, DateTime date_pv, double montant, DateTime date_demande, string montant_lettre) : base( employé, type, motif, num_pv, date_pv, montant, date_demande, montant_lettre)
         {
-            responsable.ajouter_pret_non_remboursable(this);
-            this.Employé.ajouter_pret_non_rembours(this);
+            responsable.ajouter_pret_non_remboursable(this);//ajut automatique du pret a la liste des prets non remboursables
+            this.Employé.ajouter_pret_non_remboursable_employe(this);//ajout automatique du pret a la liste des prets non remboursables de l'employe.
         }
        
     }

@@ -9,11 +9,11 @@ namespace Prjp
     public class responsable
     {
         public static double tresor;
-        public static int nb_pret = 1;
-        public static int nb_rembours = 1;
-        public static int nb_non_rembours = 1;
-        public static int nb_emp = 1;
-        public static int nb_archive = 1;
+        public static int cle_liste_types = 1;                 // des attributs statiques permettant de donner des
+        public static int cle_liste_pret_remboursable = 1;            // cles uniques aux differents dictionnaires 
+        public static int cle_liste_non_remboursable = 1;                 // utilisés en s'incrémentant à chaque ajout
+        public static int cle_liste_employe = 1;                             // les clés se sont gérées par nous et pas selon l'introduction
+        public static int cle_liste_archive = 1;                                     // de l'utilisateur.
         public static Dictionary<int, Employé> liste_employes = new Dictionary<int, Employé>();
         public static Dictionary<int, Type_pret> liste_types = new Dictionary<int, Type_pret>();
         public static Dictionary<int, Archive> liste_archives = new Dictionary<int, Archive>();
@@ -70,13 +70,13 @@ namespace Prjp
             }
         }
 
-        public static void ajouter_emp(  Employé b)
+        public static void ajouter_employe(  Employé b)
         {
             
             if (!(liste_employes.ContainsValue(b)))
                 {
-                liste_employes.Add(nb_emp, b);
-                nb_emp++;
+                liste_employes.Add(cle_liste_employe, b);
+                cle_liste_employe++;
               }
             else
             {
@@ -89,8 +89,8 @@ namespace Prjp
             if (!(liste_types.ContainsValue(b)))
             {
 
-                liste_types.Add(nb_pret, b);
-                nb_pret++;
+                liste_types.Add(cle_liste_types, b);
+                cle_liste_types++;
             }
             else
             {
@@ -102,8 +102,8 @@ namespace Prjp
            
             if (!(liste_pret_remboursable.ContainsValue(b)))
             {
-                liste_pret_remboursable.Add(nb_rembours, b);
-                nb_rembours++;
+                liste_pret_remboursable.Add(cle_liste_pret_remboursable, b);
+                cle_liste_pret_remboursable++;
             }
             else
             {
@@ -115,8 +115,8 @@ namespace Prjp
             
             if (!(liste_pret_Non_Remboursables.ContainsValue(b)))
             {
-                liste_pret_Non_Remboursables.Add(nb_non_rembours, b);
-                nb_non_rembours++;
+                liste_pret_Non_Remboursables.Add(cle_liste_non_remboursable, b);
+                cle_liste_non_remboursable++;
             }
             else
             {
@@ -127,7 +127,7 @@ namespace Prjp
         {
             foreach (KeyValuePair<int, Employé> kvp in ls)
             {
-                if(kvp.Value.meme_employé(e))
+                if(kvp.Value.Equals(e))
                 {
                     Console.WriteLine(kvp.Key);
                 }

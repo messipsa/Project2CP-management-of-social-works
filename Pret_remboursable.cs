@@ -20,8 +20,8 @@ namespace Prjp
             this.en_cours = en_cours;
             this.etat_rembouressement = etat_rembouressement;
             this.debordement = debordement;
-            responsable.ajouter_pret_remboursable(this);
-            this.Employé.ajouter_pret_rembours(this);
+            responsable.ajouter_pret_remboursable(this); //ajout automatique du pret a la liste des prets remboursables.
+            this.Employé.ajouter_pret_remboursable_employe(this);// ajout automatique du pret a la liste des prets remboursable de l'employe.
         }
         public double[] Etat_Rembouressement
         {

@@ -9,7 +9,7 @@ namespace Prjp
     abstract public class Prets
     {
 
-        protected static int cle_globale = 1;
+        
         protected int cle;
         protected Employé employé;
         protected Type_pret type;
@@ -18,13 +18,15 @@ namespace Prjp
         protected DateTime date_pv;
         protected double montant;
         protected DateTime date_demande;
-        protected string montant_lettre;
-
-
+        protected string montant_lettre; 
+        protected static int cle_unique_pret=1 ; // un attribut static qui s'incremente à chaque instanciation d'un pret 
+                                                  // il est gérés par nous (pas besoin que l'utilisateur introduise une clé) affin d'eviter 
+                                                  // les doublons.
         public Prets(Employé employé, Type_pret type, string motif, int num_pv, DateTime date_pv, double montant, DateTime date_demande, string montant_lettre)
         {
-            this.cle = Prets.cle_globale;
-            Prets.cle_globale++;
+            this.type = type;
+            this.cle = Prets.cle_unique_pret; // de cette façon la clé est bien gérée et biensur unique.
+            Prets.cle_unique_pret++;
             this.employé = employé;
             this.type = type;
             this.motif = motif;
