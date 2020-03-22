@@ -9,6 +9,7 @@ namespace Prjp
     public class Employé
     {
         private int cle;
+        private static int cle_generale=1;
         private string nom;
         private string prenom;
         private string num_sec_social;
@@ -21,14 +22,16 @@ namespace Prjp
         private string num_tel;
         private bool demande;
         private string matricule;
+        public static  int nb_pret_rembours=1;
+        public static int nb_pret_non_rembours = 1;
 
         private Dictionary<int, Pret_remboursable> pret_remboursable_employe = new Dictionary<int, Pret_remboursable>();
         private Dictionary<int, Pret_non_remboursable> pret_non_remboursable_employe = new Dictionary<int, Pret_non_remboursable>();
 
 
-        public Employé(int cle, string matricule, string nom, string prenom, string num_sec_social, DateTime date_naissance, string grade, DateTime date_prem, string etat, string ccp, string cle_ccp, string tel, bool demande)
+        public Employé( string matricule, string nom, string prenom, string num_sec_social, DateTime date_naissance, string grade, DateTime date_prem, string etat, string ccp, string cle_ccp, string tel, bool demande)
         {
-            this.cle = cle;
+            this.cle = Employé.cle_generale;
             this.matricule = matricule;
             this.nom = nom;
             this.prenom = prenom;
@@ -42,6 +45,8 @@ namespace Prjp
             this.ccp = ccp;
             this.tel = tel;
             this.demande = demande;
+            Employé.cle_generale++;
+            responsable.ajouter_emp(this);
         }
 
         public void affiche_attribus()
@@ -200,21 +205,8 @@ namespace Prjp
                 this.grade = value;
             }
         }
-        public  void affich_employ()
-        {
-            Console.WriteLine(this.nom + " " + this.prenom + " né le " + this.date_naissance + " est un : " + this.grade );
-        }
-        public bool meme_employé(Employé e)
-        {
-            if (this.num_sec_social==e.sec_soc)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        
+       
         public override bool Equals(object obj)
         {
             if (obj==null)
@@ -223,6 +215,48 @@ namespace Prjp
             }
             Employé emp = obj as Employé;
             return (this.num_sec_social == emp.sec_soc);
+        }
+        public void ajouter_pret_rembours(Pret_remboursable p)
+        {
+            if (!(pret_remboursable_employe.ContainsValue(p)))
+            {
+                pret_remboursable_employe.Add(Employé.nb_pret_rembours, p);
+                Employé.nb_pret_rembours++;
+            }
+            else
+            {
+                Console.WriteLine("pas d'ajout");
+            }
+        }
+        public void ajouter_pret_non_rembours(Pret_non_remboursable p)
+        {
+            if (!(pret_non_remboursable_employe.ContainsValue(p)))
+            {
+                pret_non_remboursable_employe.Add(Employé.nb_pret_non_rembours, p);
+               Employé.nb_pret_non_rembours++;
+            }
+            else
+            {
+                Console.WriteLine("pas d'ajout");
+            }
+        }
+        public void affiche_liste_pret_remboursable()
+        {
+            foreach (KeyValuePair<int, Pret_remboursable> liste in this.pret_remboursable_employe)
+            {
+                Console.WriteLine("*********************************");
+                Console.WriteLine("Clé = " + liste.Key + " || ");
+                liste.Value.affiche_attributs_complets();
+            }
+        }
+        public  void affiche_liste_pret_non_remboursable()
+        {
+            foreach (KeyValuePair<int, Pret_non_remboursable> liste in this.pret_non_remboursable_employe)
+            {
+                Console.WriteLine("*********************************");
+                Console.WriteLine("Clé = " + liste.Key + " || ");
+                liste.Value.affiche_attribus();
+            }
         }
     }
 }

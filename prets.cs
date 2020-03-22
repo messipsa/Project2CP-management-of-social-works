@@ -9,7 +9,7 @@ namespace Prjp
     abstract public class Prets
     {
 
-        protected static int cle_globale = 0;
+        protected static int cle_globale = 1;
         protected int cle;
         protected Employé employé;
         protected Type_pret type;
@@ -23,7 +23,8 @@ namespace Prjp
 
         public Prets(Employé employé, Type_pret type, string motif, int num_pv, DateTime date_pv, double montant, DateTime date_demande, string montant_lettre)
         {
-            this.cle = Prets.cle_globale++;
+            this.cle = Prets.cle_globale;
+            Prets.cle_globale++;
             this.employé = employé;
             this.type = type;
             this.motif = motif;
@@ -157,7 +158,7 @@ namespace Prjp
             {
                 return false;
             }
-            return (this.cle == p.Cle);
+            return ((this.cle == p.Cle)&&(this.type==p.Type_Pret));
         }
 
 

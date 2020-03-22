@@ -51,7 +51,25 @@ namespace Prjp
                 liste.Value.affiche_attribus();
             }
         }
-       
+        public static void affiche_liste_pret_remboursable()
+        {
+            foreach (KeyValuePair<int, Pret_remboursable> liste in responsable.liste_pret_remboursable)
+            {
+                Console.WriteLine("*********************************");
+                Console.WriteLine("Clé = " + liste.Key + " || ");
+                liste.Value.affiche_attributs_complets();
+            }
+        }
+        public static void affiche_liste_pret_non_remboursable()
+        {
+            foreach (KeyValuePair<int, Pret_non_remboursable> liste in responsable.liste_pret_Non_Remboursables)
+            {
+                Console.WriteLine("*********************************");
+                Console.WriteLine("Clé = " + liste.Key + " || ");
+                liste.Value.affiche_attribus();
+            }
+        }
+
         public static void ajouter_emp(  Employé b)
         {
             

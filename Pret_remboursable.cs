@@ -20,6 +20,8 @@ namespace Prjp
             this.en_cours = en_cours;
             this.etat_rembouressement = etat_rembouressement;
             this.debordement = debordement;
+            responsable.ajouter_pret_remboursable(this);
+            this.Employé.ajouter_pret_rembours(this);
         }
         public double[] Etat_Rembouressement
         {
@@ -68,17 +70,22 @@ namespace Prjp
                 this.debordement = value;
             }
         }
-        public Boolean meme_pret( Pret_remboursable p2)
+       
+        public void affiche_attributs_complets()
         {
-            if(this.Employé.meme_employé(p2.employé)&&(this.montant==p2.montant)&&(this.Date_demande==p2.Date_demande)&&(this.Date_premier_paiment==p2.Date_premier_paiment)&&(this.type==p2.Type_Pret))
+            this.affiche_attribus();
+            Console.WriteLine("Date de premeir paiement" + this.Date_premier_paiment);
+            if(this.En_cours==1)
             {
-                return true;
+                Console.WriteLine("Etat actuel  : paiement régulier"  );
             }
             else
             {
-                return false;
+                Console.WriteLine("Etat actuel  : en retardement");
             }
-        }
+            Console.WriteLine("Etat mensuel de remboursement :" + this.etat_rembouressement[0] + " | " + this.etat_rembouressement[1] + " | " + this.etat_rembouressement[2] + " | " + this.etat_rembouressement[3] + " | " + this.etat_rembouressement[4]);
+            Console.WriteLine("                               " + this.etat_rembouressement[5] + " | " + this.etat_rembouressement[6] + " | " + this.etat_rembouressement[7] + " | " + this.etat_rembouressement[8] + " | " + this.etat_rembouressement[9]);
+                }
        
     }
 }

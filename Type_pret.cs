@@ -8,17 +8,20 @@ namespace Prjp
 {
     public class Type_pret
     {
+        private static int num_type =1;
         private int type_du_pret;
         private int disponibilité;
         private string description;
         private int remboursable;
 
-        public Type_pret(int type_du_pret, int dispo, string descri, int remboursable)
+        public Type_pret( int dispo, string descri, int remboursable)
         {
-            this.type_du_pret = type_du_pret;
+            this.type_du_pret = Type_pret.num_type;
             this.disponibilité = dispo;
             this.description = descri;
             this.remboursable = remboursable;
+            responsable.ajouter_type_pret(this);
+            Type_pret.num_type++;
         }
 
         public void affiche_attribus()
