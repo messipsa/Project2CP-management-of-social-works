@@ -29,9 +29,10 @@ namespace Prjp
         private Dictionary<int, Pret_non_remboursable> pret_non_remboursable_employe = new Dictionary<int, Pret_non_remboursable>();
 
 
-        public Employé( string matricule, string nom, string prenom, string num_sec_social, DateTime date_naissance, string grade, DateTime date_prem, string etat, string ccp, string cle_ccp, string tel, bool demande)
+        public Employé(int cle_, string matricule, string nom, string prenom, string num_sec_social, DateTime date_naissance, string grade, DateTime date_prem, string etat, string ccp, string cle_ccp, string tel, bool demande)
         {
-            this.cle = Employé.cle_unique_employés;//l'unicité de la cle d'un employé
+            //this.cle = Employé.cle_unique_employés;//l'unicité de la cle d'un employé
+            this.cle = cle_;
             this.matricule = matricule;
             this.nom = nom;
             this.prenom = prenom;
@@ -45,7 +46,7 @@ namespace Prjp
             this.ccp = ccp;
             this.tel = tel;
             this.demande = demande;
-            Employé.cle_unique_employés++;
+           // Employé.cle_unique_employés++;
             responsable.ajouter_employe(this);// ajout automatique d'un employé à la liste des employés.
         }
 
@@ -220,7 +221,7 @@ namespace Prjp
         {
             if (!(pret_remboursable_employe.ContainsValue(p)))
             {
-                pret_remboursable_employe.Add(Employé.cle_liste_prets_remboursable_employe, p);
+                pret_remboursable_employe.Add(p.Cle, p);
                 Employé.cle_liste_prets_remboursable_employe++;
             }
             else
@@ -232,7 +233,7 @@ namespace Prjp
         {
             if (!(pret_non_remboursable_employe.ContainsValue(p)))
             {
-                pret_non_remboursable_employe.Add(Employé.cle_liste_prets_Non_remboursable_employe, p);
+                pret_non_remboursable_employe.Add(p.Cle, p);
                Employé.cle_liste_prets_Non_remboursable_employe++;
             }
             else
