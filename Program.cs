@@ -28,12 +28,12 @@ namespace Prjp
              responsable.initialiser_dictionnaire_pret_non_remboursable();
            // responsable.affiche_liste_pret_non_remboursable();
             responsable.initialiser_dictionnaire_pret_remboursable();
-            
+            responsable.liste_pret_remboursable.Remove(4);
          //  responsable.affiche_liste_pret_remboursable();
             responsable.suivi();
-            responsable.retardement_paiement(2);
-            responsable.suivi();
-            responsable.paiement_anticipé(10);
+          /*  responsable.retardement_paiement(2);
+            responsable.suivi();*/
+            /*responsable.paiement_anticipé(10);
             responsable.suivi();
            responsable.suivi();
             responsable.retardement_paiement(9);
@@ -46,7 +46,7 @@ namespace Prjp
                 responsable.suivi();
             }
             responsable.paiement_anticipé(9);
-            responsable.suivi();
+            responsable.suivi();*/
 
             responsable.affiche_liste_pret_remboursable();
 

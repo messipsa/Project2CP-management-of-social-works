@@ -175,7 +175,7 @@ namespace Prjp
 
             else
             {
-                if ((this.mois_actuel == 10) && (this.somme_remboursée < this.montant))
+                if ((this.mois_actuel == 10)&&(this.debordement==-1) && (this.somme_remboursée < this.montant))
                 {
                     Pret_remboursable p = (Pret_remboursable)this.MemberwiseClone();
                     p.cle = responsable.cle_a_affecter_pret_remboursable();
@@ -191,6 +191,13 @@ namespace Prjp
                     p.somme_remboursée = this.somme_remboursée;
                     p.paiement();
                     responsable.liste_pret_remboursable_provisoire.Add(p.cle, p);
+                }
+                else
+                {
+                    if((this.mois_actuel == 10) && (this.debordement != -1))
+                    {
+                        this.mois_actuel++;
+                    }
                 }
 
 
@@ -251,7 +258,7 @@ namespace Prjp
     }
     else
     {
-        if ((this.mois_actuel == 10) && (this.somme_remboursée < this.montant))
+        if ((this.mois_actuel == 10) &&(this.debordement==-1) &&(this.somme_remboursée < this.montant))
         {
             Pret_remboursable p = (Pret_remboursable)this.MemberwiseClone();
             p.cle = responsable.cle_a_affecter_pret_remboursable();
@@ -269,6 +276,13 @@ namespace Prjp
             p.paiement_anticipé();
             responsable.liste_pret_remboursable_provisoire.Add(p.cle, p);
         }
+        else
+                {
+                    if((this.mois_actuel == 10) && (this.debordement != -1))
+                    {
+                        this.mois_actuel++;
+                    }
+                }
     }
 
     foreach (KeyValuePair<int, Pret_remboursable> kvp in responsable.liste_pret_remboursable)
