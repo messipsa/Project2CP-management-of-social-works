@@ -19,12 +19,30 @@ namespace Prjp
             this.pret = pret_;
             this.date_fin_remboursement = date_fin_remboursement_;
             this.observations = observations_;
+          /*  responsable.liste_archives.Add(this.Cle, this);
+            responsable.liste_types.Remove(this.pret.Type_Pret.Cle);
+            if(this.pret.Type_Pret.Remboursable==1)
+            {
+                responsable.liste_pret_remboursable.Remove(this.pret.Cle);
+               
+            }
+            else
+            {
+                responsable.liste_pret_Non_Remboursables.Remove(this.pret.Cle);
+            }*/
         }
 
         public void affiche_attribue()
         {
             Console.Write(this.cle + " | ");
-            this.pret.affiche_attribus();
+            if (this.pret.Type_Pret.Remboursable==1)
+            {
+                this.Pret.affiche_attributs_complets();
+            }
+            else
+            {
+                this.Pret.affiche_attribus();
+            }
             Console.WriteLine(this.observations + " | " + this.date_fin_remboursement);
         }
 

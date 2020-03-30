@@ -4,3 +4,8 @@ C:\Users\dell\source\repos\Prjp\Prjp\bin\Debug\Prjp.pdb
 C:\Users\dell\source\repos\Prjp\Prjp\obj\Debug\Prjp.csprojAssemblyReference.cache
 C:\Users\dell\source\repos\Prjp\Prjp\obj\Debug\Prjp.exe
 C:\Users\dell\source\repos\Prjp\Prjp\obj\Debug\Prjp.pdb
+C:\Users\dell\source\repos\Prjp\Prjp\bin\Debug\Newtonsoft.Json.dll
+C:\Users\dell\source\repos\Prjp\Prjp\bin\Debug\System.Data.SqlClient.dll
+C:\Users\dell\source\repos\Prjp\Prjp\bin\Debug\Newtonsoft.Json.xml
+C:\Users\dell\source\repos\Prjp\Prjp\bin\Debug\System.Data.SqlClient.xml
+C:\Users\dell\source\repos\Prjp\Prjp\obj\Debug\Prjp.csproj.CopyComplete

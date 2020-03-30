@@ -8,25 +8,39 @@ namespace Prjp
 {
     public class Type_pret
     {
-       // private static int cle_liste_types =1;// attribut permettant l'unicite des cles concernant les types de prets.
+        // private static int cle_liste_types =1;// attribut permettant l'unicite des cles concernant les types de prets.
+        private int cle;
         private int type_du_pret;
         private int disponibilité;
         private string description;
         private int remboursable;
 
-        public Type_pret(int cle_, int dispo, string descri, int remboursable)
+        public Type_pret(int cle_,int type_pret, int dispo, string descri, int remboursable)
         {
-            this.type_du_pret = cle_;
+            this.cle = cle_;
+            this.type_du_pret = type_pret;
             this.disponibilité = dispo;
             this.description = descri;
             this.remboursable = remboursable;
-            responsable.ajouter_type_pret(this);//ajout automatique du type pret a la liste des types_prets.
+           // responsable.ajouter_type_pret(this);//ajout automatique du type pret a la liste des types_prets.
            // Type_pret.cle_liste_types++;
         }
 
         public void affiche_attribus()
         {
             Console.WriteLine(this.type_du_pret + " | " + this.disponibilité + " | " + this.Description + " | " + this.remboursable);
+        }
+
+        public int Cle
+        {
+            get
+            {
+                return this.cle;
+            }
+            set
+            {
+                this.cle = value;
+            }
         }
 
         public int Type_de_pret

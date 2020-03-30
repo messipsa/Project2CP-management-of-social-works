@@ -46,8 +46,8 @@ namespace Prjp
             this.ccp = ccp;
             this.tel = tel;
             this.demande = demande;
-           // Employé.cle_unique_employés++;
-            responsable.ajouter_employe(this);// ajout automatique d'un employé à la liste des employés.
+           // Console.WriteLine(this.cle + " " + this.Nom);
+           // responsable.ajouter_employe(this);// ajout automatique d'un employé à la liste des employés.
         }
 
         public void affiche_attribus()
