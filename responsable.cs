@@ -213,9 +213,14 @@ namespace Prjp
                     mois.Add(7, (double)rdr.GetDouble(17));
                     mois.Add(8, (double)rdr.GetDouble(18));
                     mois.Add(9, (double)rdr.GetDouble(19));
-                    
+                    int cpt = 0;
+                   
                     Pret_remboursable pret = new Pret_remboursable((int)rdr.GetInt32(0), emp, type, rdr.GetValue(8).ToString(), (int)rdr.GetInt32(4), date_pv, (double)rdr.GetDouble(6), date_demande, rdr.GetValue(7).ToString(), date_prem_paiment,10, (int)rdr.GetInt32(9), mois, (int)rdr.GetInt32(20));
-                    liste_pret_remboursable.Add(pret.Cle, pret);
+                  
+                        liste_pret_remboursable.Add(pret.Cle, pret);
+                        
+                    
+                   
                 }
                 catch
                 {
@@ -422,10 +427,17 @@ namespace Prjp
                 responsable.liste_pret_remboursable_provisoire.Remove(element.Key);
             }
         }
-        public static void paiement_anticipé(Pret_remboursable p)
+        public static void paiement_anticipé(int cle)
         {
-            
-                p.paiement_anticipé();
+
+            foreach (KeyValuePair<int, Pret_remboursable> element in responsable.liste_pret_remboursable)
+            {
+                if (cle == element.Key)
+                {
+                    element.Value.paiement_anticipé();
+                }
+            }
+           
             foreach (KeyValuePair<int, Pret_remboursable> element in responsable.liste_pret_remboursable_provisoire)
             {
                 responsable.liste_pret_remboursable.Add(element.Key, element.Value);
@@ -443,9 +455,15 @@ namespace Prjp
 
 
        
-        public static void retardement_paiement(Pret_remboursable p)
+        public static void retardement_paiement(int cle)
         {
-            p.retardement();
+            foreach (KeyValuePair<int, Pret_remboursable> element in responsable.liste_pret_remboursable)
+            {
+                if (cle == element.Key)
+                {
+                    element.Value.retardement();
+                }
+            }
         }
 
         public static int cle_a_affecter_employe()

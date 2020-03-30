@@ -28,10 +28,28 @@ namespace Prjp
              responsable.initialiser_dictionnaire_pret_non_remboursable();
            // responsable.affiche_liste_pret_non_remboursable();
             responsable.initialiser_dictionnaire_pret_remboursable();
-          
-           responsable.affiche_liste_pret_remboursable();
+            
+         //  responsable.affiche_liste_pret_remboursable();
             responsable.suivi();
+            responsable.retardement_paiement(2);
+            responsable.suivi();
+            responsable.paiement_anticipé(10);
+            responsable.suivi();
+           responsable.suivi();
+            responsable.retardement_paiement(9);
+            responsable.suivi();
+           responsable.retardement_paiement(9);
+            responsable.suivi();
+           for(int i=0;i<6;i++)
+            {
+                responsable.retardement_paiement(9);
+                responsable.suivi();
+            }
+            responsable.paiement_anticipé(9);
+            responsable.suivi();
+
             responsable.affiche_liste_pret_remboursable();
+
             /*DateTime d1 = new DateTime(1957, 12, 22, 14, 30, 20);
             DateTime d2 = new DateTime(2015, 6,29, 9, 32, 40);
             DateTime d3 = new DateTime(1970, 1, 24, 22, 00, 00);
