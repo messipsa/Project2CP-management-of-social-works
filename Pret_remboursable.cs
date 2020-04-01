@@ -15,7 +15,7 @@ namespace Prjp
         private Dictionary<int, double> etat = new Dictionary<int, double>();
         private int debordement;
         private int mois_actuel = 0;
-        private DateTime date_actuelle;
+        private DateTime date_actuelle ;
         private int durée;
         private List<double> l = new List<double>();
         private double somme_remboursée;
@@ -25,6 +25,13 @@ namespace Prjp
             this.en_cours = en_cours;
             this.etat = dico;
             this.debordement = debordement;
+            foreach(Pret_remboursable p in responsable.liste_pret_remboursable.Values)
+            {
+                if(p.debordement==this.cle)
+                {
+                    this.somme_remboursée = p.Somme_remboursée;
+                }
+            }
             //this.mois_actuel = mois_actuel_;
             this.durée = durée;
             this.date_actuelle = date_premier_paiment;
@@ -39,7 +46,7 @@ namespace Prjp
             {
                 if (d != -1)
                 {
-
+                    this.date_actuelle = this.date_actuelle.AddMonths(1);
                     this.mois_actuel++;
                 }
 
@@ -222,6 +229,7 @@ namespace Prjp
                     }
                 }
                 this.mois_actuel = 11;
+                this.date_actuelle = this.date_actuelle.AddMonths( - 1);
             }
             this.En_cours = 1;
         }

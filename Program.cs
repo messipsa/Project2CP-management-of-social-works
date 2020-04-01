@@ -28,9 +28,24 @@ namespace Prjp
              responsable.initialiser_dictionnaire_pret_non_remboursable();
            // responsable.affiche_liste_pret_non_remboursable();
             responsable.initialiser_dictionnaire_pret_remboursable();
-            responsable.liste_pret_remboursable.Remove(4);
+            foreach(Pret_remboursable p in responsable.liste_pret_remboursable.Values)
+            {
+                if(p.Cle==3)
+                {
+                    p.Etat.Remove(8);
+                    p.Etat.Add(8, 0);
+                    p.Etat.Remove(9);
+                    p.Etat.Remove(10);
+                    p.Etat.Add(9, 0);
+                    p.Etat.Add(10, 0);
+                    p.Mois_actuel = 11;
+                }
+            }
+           // responsable.liste_pret_remboursable.Remove(4);
          //  responsable.affiche_liste_pret_remboursable();
-            responsable.suivi();
+          // responsable.suivi();
+          //  responsable.retardement_paiement(5);
+          //  responsable.suivi();
           /*  responsable.retardement_paiement(2);
             responsable.suivi();*/
             /*responsable.paiement_anticipé(10);
@@ -45,9 +60,20 @@ namespace Prjp
                 responsable.retardement_paiement(9);
                 responsable.suivi();
             }
-            responsable.paiement_anticipé(9);
-            responsable.suivi();*/
-
+            responsable.paiement_anticipé(9);*/
+           
+           responsable.suivi();
+            responsable.retardement_paiement(3);
+            responsable.suivi();
+            responsable.suivi();
+            responsable.paiement_anticipé(3);
+            /* responsable.suivi();
+             responsable.suivi();
+             responsable.retardement_paiement(10);
+             responsable.suivi();
+             responsable.suivi();
+             responsable.suivi();
+             responsable.paiement_anticipé(10);*/
             responsable.affiche_liste_pret_remboursable();
 
             /*DateTime d1 = new DateTime(1957, 12, 22, 14, 30, 20);
