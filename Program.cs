@@ -14,19 +14,25 @@ namespace Prjp
     {
         public static void Main(string[] args)
         {
+          
            // responsable.affiche_liste_type_pret();
            // responsable.affiche_liste_pret_remboursable();
             responsable.initialiser_dictionnaire_employes();
              
            // responsable.affiche_liste_employes();
             responsable.initialiser_dictionnaire_archive();
-            // responsable.affiche_liste_archive();
-           responsable.initialiser_dictionnaire_types_prets();
+            responsable.archiver_manuel_pret_non_remboursable(2);
+            responsable.affiche_liste_archive();
+            responsable.initialiser_dictionnaire_types_prets();
             //responsable.affiche_liste_type_pret();
           
 
              responsable.initialiser_dictionnaire_pret_non_remboursable();
-           // responsable.affiche_liste_pret_non_remboursable();
+            responsable.archiver_manuel_pret_non_remboursable(2);
+           
+            //
+
+            // responsable.affiche_liste_pret_non_remboursable();
             responsable.initialiser_dictionnaire_pret_remboursable();
             foreach(Pret_remboursable p in responsable.liste_pret_remboursable.Values)
             {
@@ -41,44 +47,60 @@ namespace Prjp
                     p.Mois_actuel = 11;
                 }
             }
-           // responsable.liste_pret_remboursable.Remove(4);
-         //  responsable.affiche_liste_pret_remboursable();
-          // responsable.suivi();
-          //  responsable.retardement_paiement(5);
-          //  responsable.suivi();
-          /*  responsable.retardement_paiement(2);
-            responsable.suivi();*/
-            /*responsable.paiement_anticipé(10);
+           
+            
+            responsable.paiement_anticipé(9);
+            responsable.archiver_pret_remboursable();
+            responsable.archiver_pret_non_remboursable();
+            responsable.affiche_liste_archive();
+
             responsable.suivi();
-           responsable.suivi();
-            responsable.retardement_paiement(9);
+            
+            responsable.retardement_paiement(3);
             responsable.suivi();
-           responsable.retardement_paiement(9);
+            responsable.paiement_anticipé(3);
             responsable.suivi();
-           for(int i=0;i<6;i++)
+            responsable.paiement_anticipé(9);
+            //responsable.archiver_pret_remboursable();
+
+            /* for (int i = 0; i < 10; i++)
+             {
+                 Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+             }
+             foreach (KeyValuePair<int, Pret_remboursable> kvp in responsable.liste_pret_remboursable)
+             {
+                 Console.WriteLine(kvp.Value.Date_actuelle);
+             }
+             /* responsable.suivi();
+              responsable.suivi();
+              responsable.retardement_paiement(10);
+              responsable.suivi();
+              responsable.suivi();
+              responsable.suivi();*/
+          //  responsable.affiche_liste_pret_non_remboursable();
+            responsable.paiement_anticipé(10);
+            for(int i=0;i<2;i++)
             {
                 responsable.retardement_paiement(9);
                 responsable.suivi();
             }
-            responsable.paiement_anticipé(9);*/
-           
-           responsable.suivi();
-            responsable.retardement_paiement(3);
-            responsable.suivi();
-            responsable.suivi();
-            responsable.paiement_anticipé(3);
-            /* responsable.suivi();
-             responsable.suivi();
-             responsable.retardement_paiement(10);
-             responsable.suivi();
-             responsable.suivi();
-             responsable.suivi();
-             responsable.paiement_anticipé(10);*/
-            responsable.affiche_liste_pret_remboursable();
+           responsable.paiement_anticipé(9);
+           // responsable.archiver_manuel_pret_remboursable(9);
+            //responsable.effacement_dettes(9);
+        
+           responsable.archiver_pret_remboursable();
+          //  responsable.affiche_liste_archive();
+            for (int i = 0; i < 10; i++)
+            {
+                Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            }
 
-            /*DateTime d1 = new DateTime(1957, 12, 22, 14, 30, 20);
+          // responsable.affiche_liste_pret_remboursable();
+
+          /*  DateTime d1 = new DateTime(1957, 12, 22, 14, 30, 20);
             DateTime d2 = new DateTime(2015, 6,29, 9, 32, 40);
-            DateTime d3 = new DateTime(1970, 1, 24, 22, 00, 00);
+            Console.WriteLine(DateTime.Compare(DateTime.Now, d1.AddDays(30)));*/
+           /* DateTime d3 = new DateTime(1970, 1, 24, 22, 00, 00);
             DateTime d4 = new DateTime(2007, 4, 19, 8, 2, 6);
             Employé emp1 = new Employé(1,"1818", "hadadou", "hamid", "12121212", d3, "maa", d2, "marié", "12154847845", "23", "0777777845", true);
             Employé emp2 = new Employé(2,"17718", "ait amrane", "lyes", "1218569", d1, "maa", d4, "marié", "125458845", "25", "07448915", false);

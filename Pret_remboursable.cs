@@ -378,9 +378,175 @@ namespace Prjp
                     return kvp.Value;
                 }
             }
-            return this;
+            return null;
         }
+        public void archiver() //archivage automatique apres un mois
+        {
+            int difference= DateTime.Compare(DateTime.Now, this.date_actuelle.AddDays(30));
+            if ((this.debordement == -1) && (this.montant == this.somme_remboursée)&&(difference==1))
+              
+            {
+                string observ;
+                int cle = responsable.cle_a_affecter_archive();
+               
+                    if (this.anticipé())
+                    {
+                        observ = "paiement anticipé";
+                        
+                    }
+                    else
+                    {
+                        observ = "paiement mensuel";
+                    }
+
+               
+                Archive a = new Archive(cle, this, observ, this.Date_actuelle);
+                responsable.liste_archives_provisoire.Add(responsable.cle_a_affecter_archive(), a);
+                responsable.liste_archives.Add(cle, a);
+                if (this.pere() != null)
+                {
+                    this.pere().archiver_pere(observ);
+                }
+            }
+            
+        }
+
+        public void archiver_manuel()//archivage selon le voeux de l'utilisateur
+        {
+            if ((this.debordement == -1) && (this.montant == this.somme_remboursée))
+            
+            {
+                string observ;
+                int cle = responsable.cle_a_affecter_archive();
+
+                if (this.anticipé())
+                {
+                    observ = "paiement anticipé";
+
+                }
+                else
+                {
+                    
+                    observ = "paiement mensuel";
+                }
+
+
+                Archive a = new Archive(cle, this, observ, this.Date_actuelle);
+                responsable.liste_archives_provisoire.Add(responsable.cle_a_affecter_archive(), a);
+                responsable.liste_archives.Add(cle, a);
+                if (this.pere() != null)
+                {
+                    this.pere().archiver_pere(observ);
+                }
+            }
+
+        }
+
+        public void archiver_manuel_dettes_effaces()//archivage selon le voeux de l'utilisateur
+        {
+            if (this.debordement == -1) 
+
+            {
+               
+                int cle = responsable.cle_a_affecter_archive();
+                Archive a = new Archive(cle, this, "effacement des dettes", this.Date_actuelle);
+                responsable.liste_archives_provisoire.Add(responsable.cle_a_affecter_archive(), a);
+                responsable.liste_archives.Add(cle, a);
+                if (this.pere() != null)
+                {
+                    this.pere().archiver_pere("effacement des dettes");
+                }
+            }
+
+        }
+        public void archiver_pere(string observ)//archiver touts les peres d'un pret donné
+        {
+            int cle = responsable.cle_a_affecter_archive();
+            Archive a = new Archive(cle, this, observ, this.Date_actuelle);
+            responsable.liste_archives_provisoire.Add(responsable.cle_a_affecter_archive(), a);
+            responsable.liste_archives.Add(cle, a);
+            if (this.pere() != null)
+            {
+                this.pere().archiver_pere(observ);
+            }
+        }
+        public Boolean anticipé() //elle retourne vrai si le pret est payé de façon anticipé rah tsa3dna f l'observation de archive
+        {
+            int cpt = 0;
+            foreach (double d in this.etat.Values)
+            {
+                if ((d == this.montant / this.durée) || (d == 0))
+                {
+
+                    cpt=cpt+1;
+                }
+
+            }
+            //Console.WriteLine(cpt);
+            if(cpt!=10)
+            {
+                return true;
+            }
+            return false;
+        }
+        public void children()//va jusqu'au fils pour remonter dans l'archivage
+        {
+            int debord = this.debordement;
+           if (debord != -1)
+            {
+                foreach (KeyValuePair<int, Pret_remboursable> element in responsable.liste_pret_remboursable)
+                {
+                    if (debord == element.Key)
+                    {
+                        
+                        element.Value.children();
+                    }
+                }
+            }
+            else 
+            {
+                
+                this.archiver_manuel();
+
+            }
+
+        }
+        public void children_effacement_dettes()
+        {
+            int debord = this.debordement;
+            if (debord != -1)
+            {
+                foreach (KeyValuePair<int, Pret_remboursable> element in responsable.liste_pret_remboursable)
+                {
+                    if (debord == element.Key)
+                    {
+                        
+                        element.Value.children_effacement_dettes();
+                    }
+                }
+            }
+            else
+            {
+               // this.somme_remboursée = this.montant;
+                int cpt = this.mois_actuel;
+                for (cpt = this.mois_actuel ; cpt < 10; cpt++)
+                {
+                    this.etat.Remove(cpt);
+                    this.etat.Add(cpt, 0);
+                    
+
+                }
+                this.mois_actuel = 11;
+                this.archiver_manuel_dettes_effaces();
+
+            }
+
+        }
+
+        
+        
     }
+
 }
 
    

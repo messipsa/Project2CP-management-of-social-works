@@ -23,6 +23,7 @@ namespace Prjp
         public static Dictionary<int, Pret_remboursable> liste_pret_remboursable = new Dictionary<int, Pret_remboursable>();
         public static Dictionary<int, Pret_non_remboursable> liste_pret_Non_Remboursables = new Dictionary<int, Pret_non_remboursable>();
         public static Dictionary<int, Pret_remboursable> liste_pret_remboursable_provisoire = new Dictionary<int, Pret_remboursable>();
+        public static Dictionary<int, Archive> liste_archives_provisoire = new Dictionary<int, Archive>();
         public responsable ()
         {
 
@@ -514,6 +515,19 @@ namespace Prjp
             }
             return cpt;
         }
+
+        public static int cle_a_affecter_archive()
+        {
+            int cpt = 1;
+            foreach (KeyValuePair<int, Archive> kvp in liste_archives)
+            {
+                if (kvp.Key >= cpt)
+                {
+                    cpt = kvp.Key + 1;
+                }
+            }
+            return cpt;
+        }
         public static int cle_a_affecter_type_pret()
         {
             int cpt = 1;
@@ -561,15 +575,117 @@ namespace Prjp
             return p;
          }
 
-        public static void archiver()
+        /*public static void archiver()
         {
             foreach (KeyValuePair<int , Pret_remboursable> kvp in liste_pret_remboursable)
             { 
-                 if((kvp.Value.Debordement==-1)&&(kvp.Value.Montant==kvp.Value.Somme_remboursée))
+                 if((kvp.Value.Debordement==-1)&&(kvp.Value.Montant==kvp.Value.Somme_remboursée)&&(!(liste_archives.ContainsValue(kvp))
                 {
-                    
+                  
+                        Archive a = new Archive(cle_a_affecter_archive(), kvp.Value, "paiement", kvp.Value.Date_actuelle);
+                        liste_archives_provisoire.Add(cle_a_affecter_archive(), a);
+                        liste_archives.Add(cle_a_affecter_archive(), a);
+                        
+                     while(kvp.Value.pere()!=null)
+                    {
+                        kvp.Key = kvp.Value.pere().Cle;
+
+                    }
                 }
             }
+            foreach (KeyValuePair<int, Archive> kvp in liste_archives_provisoire)
+            {
+                liste_pret_remboursable.Remove(kvp.Value.Pret.Cle);
+            }
+            liste_archives_provisoire.Clear();
+        }*/
+        public static void archiver_pret_non_remboursable()//archivage auto apres un mois
+        {
+            foreach (KeyValuePair<int, Pret_non_remboursable> kvp in liste_pret_Non_Remboursables)
+            {
+                kvp.Value.archiver();
+            }
+            foreach (KeyValuePair<int, Archive> kvp in responsable.liste_archives_provisoire)
+            {
+                responsable.liste_pret_Non_Remboursables.Remove(kvp.Value.Pret.Cle);
+            }
+            responsable.liste_archives_provisoire.Clear();
+
+
+        }
+        public static void archiver_manuel_pret_non_remboursable(int cle)//archivage auto apres un mois
+        {
+            foreach (KeyValuePair<int, Pret_non_remboursable> element in responsable.liste_pret_Non_Remboursables)
+            {
+                Console.WriteLine(cle);
+                if (cle == element.Key)
+                {
+
+                    element.Value.archiver_manuel();
+                    Console.WriteLine(cle);
+
+                }
+            }
+            foreach (KeyValuePair<int, Archive> kvp in responsable.liste_archives_provisoire)
+            {
+                responsable.liste_pret_Non_Remboursables.Remove(kvp.Value.Pret.Cle);
+            }
+            responsable.liste_archives_provisoire.Clear();
+
+
+        }
+        public static void archiver_pret_remboursable()//archivage auto apres un mois
+        {
+            foreach (KeyValuePair<int, Pret_remboursable> kvp in liste_pret_remboursable)
+            {
+                kvp.Value.archiver();
+            }
+            foreach (KeyValuePair<int, Archive> kvp in responsable.liste_archives_provisoire)
+            {
+                responsable.liste_pret_remboursable.Remove(kvp.Value.Pret.Cle);
+            }
+            responsable.liste_archives_provisoire.Clear();
+
+
+        }
+        public static void archiver_manuel_pret_remboursable(int cle) //Archiver un pret selon le voeux de l'utisitateur et ce qui est bien pour un pret
+                                                       // qui s'etend sur plusieurs lignes on px citer n'imprt quel ligne pour l'archiver
+        {
+            foreach (KeyValuePair<int, Pret_remboursable> element in responsable.liste_pret_remboursable)
+            {
+                
+                if (cle == element.Key)
+                {
+                    
+                    element.Value.children();
+
+                }
+            }
+            foreach (KeyValuePair<int, Archive> kvp in responsable.liste_archives_provisoire)
+            {
+                responsable.liste_pret_remboursable.Remove(kvp.Value.Pret.Cle);
+            }
+            responsable.liste_archives_provisoire.Clear();
+        }
+
+        public static void effacement_dettes(int cle)
+        {
+            foreach (KeyValuePair<int, Pret_remboursable> element in responsable.liste_pret_remboursable)
+            {
+
+                if (cle == element.Key)
+                {
+
+                    element.Value.children_effacement_dettes();
+
+                }
+            }
+            foreach (KeyValuePair<int, Archive> kvp in responsable.liste_archives_provisoire)
+            {
+                responsable.liste_pret_remboursable.Remove(kvp.Value.Pret.Cle);
+            }
+            responsable.liste_archives_provisoire.Clear();
+
         }
 
     }
